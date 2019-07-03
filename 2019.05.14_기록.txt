@@ -1,0 +1,156 @@
+Cascading = 우선순위
+저자 > 사용자 > 웹브라우저 순으로 이동. (저자가 가장 높은 순위)
+style > id > class > tag 순으로 순위가 생김 (style)이 가장 높은 순위
+!important 는 우선순위를 가장 높혀줌
+
+
+font-size 
+px , em ,rem 상대적이냐 절대적인 차이가 있음
+px 는 고정된 크기
+em , rem 사용자가 브라우저 설정을 바꾸면 설정에따라 크기가 달라짐 (폰트크기를 조정할 수 있는 사용자의 권리가 때문.) 줌 아웃 , 줌인 말고 웹브라우저 폰트크기를 말함.
+현재는 통상적으로 rem 을 사용. - 사용하자.
+
+
+text-align
+text-align: justify; 하게 되면 왼쪽과 오른쪽 글자가 알맞게 배치됨 즉 양쪽 균등
+간격이 가변적으로 바꼈기 때문에.
+
+
+font-family
+font-family: "Helvetica Nene"; 폰트가 만약 띄어쓰기가 돼있다면 큰따옴표 붙이기.
+serif 는 장식이 있는것 sans-serif 는 장식이 있는 것. monospace 고정 폭. 고정폭은 데이터를 다룰 때 일목요연하게 표현하기 위해 고정폭을 사용한다.
+line-height 는 자간즉 <br>로 줄을 바꾼다면 그 줄간격을 말함.
+
+inline 
+자신과 자신을 둘러싸고 있는 다른 텍스트나 정보들 하나의 같은줄에 위치하는 것.
+
+blocklevel
+자기하나가 화면전체를 사용하는것 .
+
+box-sizing.
+
+margin 겹침
+margin 크기가 큰 것이 태그 사이의 간격이 된다. 
+
+position:relative 란?
+relative = 상대적
+각엘리먼트들은 포지션의 기본값을 가지고 있다
+position:static 값으로 (정적으로) 기본 지정되어있음
+만약 left : 100px , top : 100px 등 상대적인 값을 적용할거면
+position:relative 를 사용해야함
+
+position:absolute 란?
+absolute = 절대적
+Html 엘리먼트를 기준으로함.
+absolute를 사용하면 부모와 자식관계가 없어짐.
+하지만 static 값이 아닌 다른값(relative) 을 주면 absolute인 엘리먼트는 static 이 아닌 
+부모가 나타날때까지 무시하다 static이 아닌 부모가 나오면 그 부모의 위치를 기준으로 값이 지정됨.
+
+position:fixed 란?
+fixed 는 스크롤과 상관없이 고정시키는 것
+부모와 자식관계가 없어짐.
+
+flex 를 사용하는 법
+flex 를 사용하기 위해서는 자식과 부모가 있어야 된다.
+부모에게 display:flex 를 지정해야함.
+flex-direction 을 사용하여 row , column 을 사용함.
+row-reverse, column-reverse 가 있다.
+order는 flex 에서만 사용가능 하고 아이템에 적용 가능.
+
+
+flex 의 item (자식)이 사용하는 태그
+flex-grow 란 여백을 N분의 1로 나눈다.
+item:nth-child 이란 해당하는 아이템에만 값을 지정할 수 있다는 것임.
+예를 들면 item:nth-child(2)는 2번 아이템에 지정하는 것임.
+
+flex-basis 란 기본을 의미한다 즉 기본크기를 지정하는 것임.
+flex-basis 가 200px 라면 기본으로 200px 가 지정됨.
+
+flex-shrink 를 사용하기 위해서는 flex-basis 값이 필요하다.
+shrink는 줄어든다 , 줄다 라는 뜻을 가지고 있음.
+사이트 크기를 줄일때 flex-shrink : 0 으로 지정하면 하나도 줄어들지 않고 기본값을 계속 유지함
+
+holyGrailLayout 이란
+성배 처럼 찾기 힘들었다는 말임
+header, nav , section, aside 에서 
+section의 크기만 크거나 줄어드는 것.
+
+
+미디어 쿼리란?
+@media (width:500px){
+    body{
+        background-color : red;
+    }
+}
+
+화면의 크기가 500px 이 되었을 때 body 태그의 백그라운드 컬러를 빨간색으로 변경한다.
+
+미디어 쿼리 순서
+
+.content {
+        display: flex;
+      }
+      .content nav {
+        border-right: 1px solid gray;
+      }
+      .content aside {
+        border-left: 1px solid gray;
+      }
+
+      @media (max-width: 500px) {
+        .content {
+          flex-direction: column;
+        }
+        .content nav,
+        .content aside {
+          border: none;
+          flex-basis: auto;
+        }
+        main {
+          order: 0;
+        }
+        nav {
+          order: 1;
+        }
+        aside {
+          order: 2;
+          display: none;
+        }
+      }
+
+      위에서 아래로 
+
+      a = 2
+
+      a = 1 이라고 생각 하면됨.
+
+      위에서 먼저 선언 후 그 후에 다음 값으로 넘어간다 생각해야함.
+
+float 란
+이미지 같은 것을 삽화로 삽입 할 때 사용하는 것
+float : 'left'; 같이 사용함
+float 에 많이 사용하는 속성은
+clear 속성을 많이 사용. both 를 중점적으로 사용한다
+clear 는 입력 한 글자가 이미지를 피해가지 않고 그대로 입력되는 것.
+
+transition 이란
+엘리먼트가 blocklevel 이거나 inline-block 일때 사용 가능
+
+    <style>
+      a {
+        font-size: 3rem;
+        display: inline-block;
+        /* transition-property: all;  // all 로 하면 a 태그에 대한 모든 효과에 대해 변화가 일 어 났을 때 전환이 일어난다.
+        transition-duration: 0.1s; */ // 0.1 초 동안 전환이 일어난다.
+
+        transition: all 0.1s;
+      }
+      a:active {
+        transform: translate(20px, 20px);   //x, y 축으로 20px 씩 이동
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#">Click</a>
+  </body>
